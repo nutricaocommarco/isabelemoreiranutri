@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isabele Moreira - Nutricionista</title>
+    
+    <!-- Tailwind CSS para o visual -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Bibliotecas do React para funcionar direto no navegador -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Ícones do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Nosso código React fica aqui dentro -->
+    <script type="text/babel">
+        const { useState } = React;
+
+        const App = () => {
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+            const mainColor = '#7fa66f';
+            const whatsappNumber = '5521992599037';
+            const whatsappMessage = encodeURIComponent('Olá! Gostaria de saber mais sobre as consultas.');
+            const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${whatsappMessage}`;
+
+            const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+            const closeMenu = () => setIsMenuOpen(false);
+
+            return (
+                <div className="min-h-screen bg-white text-gray-800 font-sans selection:bg-[#7fa66f] selection:text-white">
+                    {/* Barra de Navegação */}
+                    <nav className="fixed w-full bg-white/90 backdrop-blur-md z-50 shadow-sm transition-all">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="flex justify-between h-20 items-center">
+                                <div className="flex items-center gap-2">
+                                    {/* Espaço do Logo - Pode trocar esse ícone pela tag img com o logo transparente */}
+                                    <i className="fa-solid fa-leaf text-3xl" style={{color: mainColor}}></i>
+                                    <div className="flex flex-col">
+                                        <span className="font-semibold text-xl tracking-widest text-gray-900 uppercase">Isabele Moreira</span>
+                                        <span className="text-xs tracking-[0.2em] text-[#7fa66f] uppercase">Nutricionista</span>
+                                    </div>
+                                </div>
+
+                                {/* Menu para Computador */}
+                                <div className="hidden md:flex items-center space-x-8">
+                                    <a href="#home" className="text-gray-600 hover:text-[#7fa66f] transition-colors font-medium">Início</a>
+                                    <a href="#sobre" className="text-gray-600 hover:text-[#7fa66f] transition-colors font-medium">Sobre</a>
+                                    <a href="#carreira" className="text-gray-600 hover:text-[#7fa66f] transition-colors font-medium">Carreira</a>
+                                    <a href="#contato" className="text-gray-600 hover:text-[#7fa66f] transition-colors font-medium">Contato</a>
+                                    <a 
+                                        href={whatsappLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-[#7fa66f] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#6a8b5c] transition-all transform hover:scale-105 shadow-md shadow-[#7fa66f]/30 flex items-center gap-2"
+                                    >
+                                        <i className="fa-brands fa-whatsapp text-lg"></i> Agendar
+                                    </a>
+                                </div>
+
+                                {/* Botão Menu Celular */}
+                                <div className="md:hidden flex items-center">
+                                    <button onClick={toggleMenu} className="text-gray-600 focus:outline-none">
+                                        {isMenuOpen ? <i className="fa-solid fa-xmark text-3xl"></i> : <i className="fa-solid fa-bars text-3xl"></i>}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Menu Celular Expandido */}
+                        {isMenuOpen && (
+                            <div className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+                                <div className="px-4 pt-2 pb-6 space-y-2">
+                                    <a href="#home" onClick={closeMenu} className="block px-3 py-3 text-gray-700 hover:bg-gray-50 rounded-md font-medium">Início</a>
+                                    <a href="#sobre" onClick={closeMenu} className="block px-3 py-3 text-gray-700 hover:bg-gray-50 rounded-md font-medium">Sobre</a>
+                                    <a href="#carreira" onClick={closeMenu} className="block px-3 py-3 text-gray-700 hover:bg-gray-50 rounded-md font-medium">Carreira</a>
+                                    <a href="#contato" onClick={closeMenu} className="block px-3 py-3 text-gray-700 hover:bg-gray-50 rounded-md font-medium">Contato</a>
+                                </div>
+                            </div>
+                        )}
+                    </nav>
+
+                    {/* Destaque Inicial */}
+                    <section id="home" className="pt-32 pb-20 md:pt-48 md:pb-32 bg-gradient-to-br from-white via-green-50/30 to-[#7fa66f]/10">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row items-center gap-12">
+                            <div className="flex-1 text-center md:text-left space-y-8">
+                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                                    Nutrição que <span className="text-[#7fa66f]">transforma</span> sua qualidade de vida.
+                                </h1>
+                                <p className="text-lg text-gray-600 max-w-xl mx-auto md:mx-0 leading-relaxed">
+                                    Descubra o caminho para uma vida mais saudável e equilibrada com um acompanhamento nutricional personalizado e humanizado.
+                                </p>
+                                <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+                                    <a 
+                                        href={whatsappLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full sm:w-auto bg-[#7fa66f] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#6a8b5c] transition-all transform hover:-translate-y-1 shadow-lg shadow-[#7fa66f]/40 flex items-center justify-center gap-2 text-lg"
+                                    >
+                                        <i className="fa-brands fa-whatsapp text-2xl"></i> Agendar Consulta
+                                    </a>
+                                    <a 
+                                        href="#sobre"
+                                        className="w-full sm:w-auto text-[#7fa66f] border-2 border-[#7fa66f] px-8 py-4 rounded-full font-semibold hover:bg-[#7fa66f] hover:text-white transition-all text-center text-lg"
+                                    >
+                                        Conhecer Isabele
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="flex-1 w-full max-w-md md:max-w-full relative">
+                                <div className="absolute inset-0 bg-[#7fa66f] rounded-full blur-3xl opacity-20 transform translate-x-10 translate-y-10"></div>
+                                <img 
+                                    src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                    alt="Alimentação Saudável" 
+                                    className="relative w-full aspect-square object-cover rounded-[3rem] shadow-2xl border-8 border-white transform -rotate-3 transition-transform hover:rotate-0 duration-500"
+                                />
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Área Sobre Mim */}
+                    <section id="sobre" className="py-24 bg-white">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="flex flex-col md:flex-row items-center gap-16">
+                                <div className="flex-1 relative">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1594882645126-14020914d58d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                        alt="Isabele Moreira Nutricionista" 
+                                        className="w-full h-auto rounded-2xl shadow-xl z-10 relative"
+                                    />
+                                    <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-[#7fa66f]/20 rounded-full z-0 blur-2xl"></div>
+                                </div>
+                                <div className="flex-1 space-y-6">
+                                    <div className="inline-flex items-center gap-2 text-[#7fa66f] font-semibold tracking-wider uppercase text-sm mb-2">
+                                        <i className="fa-solid fa-heart"></i>
+                                        <span>Sobre Mim</span>
+                                    </div>
+                                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Olá, eu sou a Isabele Moreira</h2>
+                                    <div className="w-20 h-1 bg-[#7fa66f] rounded-full"></div>
+                                    <p className="text-lg text-gray-600 leading-relaxed pt-4">
+                                        Acredito que a alimentação vai muito além dos nutrientes; ela envolve nossa cultura, nossas emoções e nossa história. Meu objetivo como nutricionista é ajudar você a encontrar o equilíbrio perfeito para o seu corpo, sem dietas restritivas e sem terrorismo nutricional.
+                                    </p>
+                                    <p className="text-lg text-gray-600 leading-relaxed">
+                                        Cada pessoa é única, e por isso desenvolvo planejamentos alimentares individualizados, focados na sua rotina, nas suas preferências e, principalmente, nos seus objetivos, seja emagrecimento, hipertrofia, ou qualidade de vida.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Certificações e Carreira */}
+                    <section id="carreira" className="py-24 bg-gray-50">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="text-center mb-16 space-y-4">
+                                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Certificações e Carreira</h2>
+                                <div className="w-24 h-1 bg-[#7fa66f] rounded-full mx-auto"></div>
+                                <p className="text-gray-600 max-w-2xl mx-auto text-lg pt-4">
+                                    Dedicação constante aos estudos para oferecer o melhor e mais atualizado atendimento baseado em evidências científicas.
+                                </p>
+                            </div>
+
+                            <div className="grid md:grid-cols-3 gap-8">
+                                <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow group">
+                                    <div className="w-14 h-14 bg-[#7fa66f]/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#7fa66f] transition-colors">
+                                        <i className="fa-solid fa-graduation-cap text-[#7fa66f] group-hover:text-white transition-colors text-2xl"></i>
+                                    </div>
+                                    <h3 className="text-xl font-bold text-gray-900 mb-3">Graduação em Nutrição</h3>
+                                    <p className="text-gray-600">Formação completa com foco em nutrição clínica e acompanhamento integral do paciente.</p>
+                                </div>
+
+                                <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow group">
+                                    <div className="w-14 h-14 bg-[#7fa66f]/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#7fa66f] transition-colors">
+                                        <i className="fa-solid fa-award text-[#7fa66f] group-hover:text-white transition-colors text-2xl"></i>
+                                    </div>
+                                    <h3 className="text-xl font-bold text-gray-900 mb-3">Pós-Graduação</h3>
+                                    <p className="text-gray-600">Especialização para aprofundar os conhecimentos nas áreas mais modernas da ciência da nutrição.</p>
+                                </div>
+
+                                <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow group">
+                                    <div className="w-14 h-14 bg-[#7fa66f]/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#7fa66f] transition-colors">
+                                        <i className="fa-solid fa-book-open text-[#7fa66f] group-hover:text-white transition-colors text-2xl"></i>
+                                    </div>
+                                    <h3 className="text-xl font-bold text-gray-900 mb-3">Cursos e Atualizações</h3>
+                                    <p className="text-gray-600">Participação contínua em congressos e formações sobre emagrecimento, metabolismo e saúde da mulher.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Contatos e Localização */}
+                    <section id="contato" className="py-24 bg-white relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#7fa66f]/5 rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                            <div className="grid lg:grid-cols-2 gap-16">
+                                
+                                <div className="space-y-10">
+                                    <div>
+                                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Vamos conversar?</h2>
+                                        <div className="w-20 h-1 bg-[#7fa66f] rounded-full mb-6"></div>
+                                        <p className="text-lg text-gray-600">
+                                            Agende sua consulta ou tire suas dúvidas através dos canais abaixo. Atendimentos na Barra da Tijuca e Pechincha.
+                                        </p>
+                                    </div>
+
+                                    <div className="space-y-6">
+                                        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100 group">
+                                            <div className="w-12 h-12 bg-[#7fa66f]/10 rounded-full flex items-center justify-center group-hover:bg-[#7fa66f] transition-colors">
+                                                <i className="fa-brands fa-whatsapp text-[#7fa66f] group-hover:text-white transition-colors text-2xl"></i>
+                                            </div>
+                                            <div>
+                                                <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Telefone / WhatsApp</p>
+                                                <p className="text-lg font-semibold text-gray-900">+55 21 99259-9037</p>
+                                            </div>
+                                        </a>
+
+                                        <a href="mailto:isabelelopesmoreira@gmail.com" className="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100 group">
+                                            <div className="w-12 h-12 bg-[#7fa66f]/10 rounded-full flex items-center justify-center group-hover:bg-[#7fa66f] transition-colors">
+                                                <i className="fa-regular fa-envelope text-[#7fa66f] group-hover:text-white transition-colors text-xl"></i>
+                                            </div>
+                                            <div>
+                                                <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">E-mail</p>
+                                                <p className="text-lg font-semibold text-gray-900">isabelelopesmoreira@gmail.com</p>
+                                            </div>
+                                        </a>
+
+                                        <a href="https://www.instagram.com/isabelemoreiranutri/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100 group">
+                                            <div className="w-12 h-12 bg-[#7fa66f]/10 rounded-full flex items-center justify-center group-hover:bg-[#7fa66f] transition-colors">
+                                                <i className="fa-brands fa-instagram text-[#7fa66f] group-hover:text-white transition-colors text-2xl"></i>
+                                            </div>
+                                            <div>
+                                                <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Instagram</p>
+                                                <p className="text-lg font-semibold text-gray-900">@isabelemoreiranutri</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div className="bg-gray-50 p-8 md:p-10 rounded-3xl space-y-8 h-full flex flex-col justify-center">
+                                    <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                                        <i className="fa-solid fa-location-dot text-[#7fa66f] text-2xl"></i>
+                                        Endereços de Atendimento
+                                    </h3>
+                                    
+                                    <div className="space-y-8 relative">
+                                        <div className="absolute left-3 top-8 bottom-8 w-px bg-gray-200"></div>
+                                        
+                                        <div className="relative pl-10">
+                                            <div className="absolute left-2 top-1.5 w-3 h-3 bg-[#7fa66f] rounded-full ring-4 ring-white"></div>
+                                            <h4 className="text-lg font-bold text-gray-900">Barra da Tijuca</h4>
+                                            <p className="text-gray-600 mt-2">Av. das Américas, 500 - 12 a</p>
+                                            <p className="text-gray-600">Rio de Janeiro - RJ, 22640-100</p>
+                                        </div>
+
+                                        <div className="relative pl-10">
+                                            <div className="absolute left-2 top-1.5 w-3 h-3 bg-[#7fa66f] rounded-full ring-4 ring-white"></div>
+                                            <h4 className="text-lg font-bold text-gray-900">Pechincha</h4>
+                                            <p className="text-gray-600 mt-2">Estrada do Tindiba, 332, sala 203</p>
+                                            <p className="text-gray-600">Rio De Janeiro - RJ, 22740-360</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="pt-6">
+                                        <a 
+                                            href={whatsappLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-full bg-[#7fa66f] text-white px-6 py-4 rounded-xl font-semibold hover:bg-[#6a8b5c] transition-colors flex items-center justify-center gap-2"
+                                        >
+                                            Agendar minha avaliação agora
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Rodapé */}
+                    <footer className="bg-[#2A3825] py-12 text-center text-white/80">
+                        <div className="max-w-6xl mx-auto px-4 flex flex-col items-center">
+                            <i className="fa-solid fa-leaf text-[#7fa66f] text-4xl mb-6"></i>
+                            <p className="text-xl tracking-[0.15em] font-light mb-1">ISABELE MOREIRA</p>
+                            <p className="text-xs tracking-[0.3em] text-[#7fa66f] font-semibold mb-8">NUTRICIONISTA</p>
+                            <div className="flex gap-6 mb-8">
+                                <a href="https://www.instagram.com/isabelemoreiranutri/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-2xl">
+                                    <i className="fa-brands fa-instagram"></i>
+                                </a>
+                                <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-2xl">
+                                    <i className="fa-brands fa-whatsapp"></i>
+                                </a>
+                                <a href="mailto:isabelelopesmoreira@gmail.com" className="hover:text-white transition-colors text-2xl">
+                                    <i className="fa-regular fa-envelope"></i>
+                                </a>
+                            </div>
+                            <p className="text-sm">
+                                © {new Date().getFullYear()} Isabele Moreira. Todos os direitos reservados.
+                            </p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
